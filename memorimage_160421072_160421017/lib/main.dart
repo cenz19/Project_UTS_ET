@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        // 'test': (context) => Test(),
+      },
       title: 'Memorimage',
       theme: ThemeData(
         // This is the theme of your application.
@@ -120,6 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+      drawer: myDrawer(),
     );
   }
 
