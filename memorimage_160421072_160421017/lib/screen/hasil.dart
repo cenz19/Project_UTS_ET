@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:memorimage_160421072_160421017/main.dart';
-import 'package:memorimage_160421072_160421017/screen/quiz.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class LeaderBoardForm extends StatelessWidget {
+class HasilForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Leaderboard'),
+        title: Text('Hasil'),
       ),
       body: Center(
-        child: Text("This is Leaderboard"),
+        child: Text("This is Hasil"),
       ),
     );
   }
 }
 
-class LeaderBoard extends StatefulWidget {
+class Hasil extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _LeaderBoardState();
   }
 }
 
-class _LeaderBoardState extends State<LeaderBoard> {
+class _LeaderBoardState extends State<Hasil> {
   List<String> gelars = [
     "Sfortunato Indovinatore",
     "Neofita dell'Indovinello",
@@ -56,7 +54,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Leaderboard'),
+          title: Text('Hasil'),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
         body: Center(

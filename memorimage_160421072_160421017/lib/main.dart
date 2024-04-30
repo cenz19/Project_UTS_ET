@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memorimage_160421072_160421017/screen/hasil.dart';
 import 'package:memorimage_160421072_160421017/screen/login.dart';
 import 'package:memorimage_160421072_160421017/screen/quiz.dart';
 import 'package:memorimage_160421072_160421017/screen/leaderboard.dart';
@@ -53,7 +54,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (context) => LoginForm(),
         'quiz': (context) => Quiz(),
-        'leaderboard': (context) => LeaderBoard()
+        'leaderboard': (context) => LeaderBoard(),
+        'hasil': (context) => Hasil()
       },
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -194,6 +196,13 @@ class _MyHomePageState extends State<MyHomePage> {
             leading: new Icon(Icons.leaderboard),
             onTap: () {
               Navigator.popAndPushNamed(context, 'leaderboard');
+            },
+          ),
+          ListTile(
+            title: new Text("Hasil"),
+            leading: new Icon(Icons.restore_outlined),
+            onTap: () {
+              Navigator.popAndPushNamed(context, 'hasil');
             },
           ),
 

@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:memorimage_160421072_160421017/main.dart';
 import 'package:memorimage_160421072_160421017/class/questionBank.dart';
+import 'package:memorimage_160421072_160421017/screen/hasil.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void getHighscore(int point) async {
   final prefs = await SharedPreferences.getInstance();
   prefs.setInt("score", point);
-  main();
 }
 
 class Quiz extends StatefulWidget {
@@ -140,30 +139,6 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  // Future<int> checkTopPoint() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   int top_point = prefs.getInt("top_point") ?? 0;
-  //   return top_point;
-  // }
-
-  // Future<String> checkTopUser() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   String top_user = prefs.getString("top_user") ?? '';
-  //   return top_user;
-  // }
-
-  // void setTopUser(String active_user, int point) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   prefs.setString("top_user", active_user);
-  //   prefs.setInt("top_point", point);
-  // }
-
-  // Future<String> checkUser() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   String user_id = prefs.getString("user_id") ?? '';
-  //   return user_id;
-  // }
-
   @override
   void dispose() {
     _timer.cancel();
@@ -290,7 +265,8 @@ class _QuizState extends State<Quiz> {
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context, 'OK');
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
+                    Navigator.popAndPushNamed(context, 'hasil');
                   },
                   child: const Text('OK'),
                 ),
