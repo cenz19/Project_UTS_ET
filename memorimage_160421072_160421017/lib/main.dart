@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: ListView(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(20),
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 "Peraturan Permainan",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
@@ -145,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.only(left: 20.0, right: 20.0),
               child: Text(
                   '1. Player akan diperlihatkan 5 gambar yang harus diingat. Setiap gambar hanya ditunjukkan selama 3 detik'),
             ),
