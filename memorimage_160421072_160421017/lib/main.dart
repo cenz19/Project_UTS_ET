@@ -136,19 +136,6 @@ class _MyHomePageState extends State<MyHomePage> {
         drawer: myDrawer(),
         body: ListView(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(20),
-              child: Text(
-                "Peraturan Permainan",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                  '1. Player akan diperlihatkan 5 gambar yang harus diingat. Setiap gambar hanya ditunjukkan selama 3 detik'),
-            ),
           ],
         )
         // This trailing comma makes auto-formatting nicer for build methods.
