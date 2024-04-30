@@ -3,6 +3,15 @@ import 'package:memorimage_160421072_160421017/screen/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 String active_user = "";
+int top_point = 0;
+
+void doLogout() async {
+  final prefs = await SharedPreferences.getInstance();
+  active_user = "";
+  prefs.remove("user_id");
+  main();
+}
+
 void main() {
   Future<String> checkUser() async {
     final prefs = await SharedPreferences.getInstance();
@@ -10,8 +19,16 @@ void main() {
     return user_id;
   }
 
+  // Future<int> checkScore() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   int score = prefs.getInt("score") ?? 0;
+  //   return score;
+  // }
   // runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();
+  // checkScore().then((int result) {
+  //   top_point = result;
+  // });
 
   checkUser().then((String result) {
     if (result == '')
@@ -162,8 +179,10 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Column(
         children: <Widget>[
           UserAccountsDrawerHeader(
-              accountName: Text("xyz"),
-              accountEmail: Text("xyz@gmail.com"),
+              accountName: Text(active_user != "" ? active_user : "xyz"),
+              accountEmail: Text(active_user != ""
+                  ? active_user + "@gmail.com"
+                  : "user@gmail.com"),
               currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage("https://i.pravatar.cc/150"))),
           ListTile(
@@ -175,6 +194,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Divider(
             height: 40,
+          ),
+          ListTile(
+            title: new Text(active_user != "" ? "Logout" : "Login"),
+            leading: new Icon(Icons.login),
+            onTap: () {
+              active_user != ""
+                  ? doLogout()
+                  : Navigator.popAndPushNamed(context, 'login');
+            },
           ),
           // ListTile(
           //   title: new Text(active_user != "" ? "Logout" : "Login"),
