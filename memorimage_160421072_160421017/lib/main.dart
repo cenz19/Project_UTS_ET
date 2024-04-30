@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memorimage_160421072_160421017/screen/login.dart';
+import 'package:memorimage_160421072_160421017/screen/quiz.dart';
+import 'package:memorimage_160421072_160421017/screen/leaderboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 String active_user = "";
@@ -49,6 +51,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         'login': (context) => LoginForm(),
+        'quiz': (context) => Quiz(),
+        'leaderboard': (context) => LeaderBoard()
       },
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -192,6 +196,21 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.popAndPushNamed(context, 'student');
             },
           ),
+          ListTile(
+            title: new Text("Quiz"),
+            leading: new Icon(Icons.book),
+            onTap: () {
+              Navigator.popAndPushNamed(context, 'quiz');
+            },
+          ),
+          ListTile(
+            title: new Text("LeaderBoard"),
+            leading: new Icon(Icons.leaderboard),
+            onTap: () {
+              Navigator.popAndPushNamed(context, 'leaderboard');
+            },
+          ),
+
           Divider(
             height: 40,
           ),
