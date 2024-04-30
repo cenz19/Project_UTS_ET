@@ -123,58 +123,36 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(_judul[_currentIndex]),
-      ),
-      // body: _screens[_currentIndex],
-      drawer: myDrawer(),
-      bottomNavigationBar: myBottomNavBar(),
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  BottomNavigationBar myBottomNavBar() {
-    return BottomNavigationBar(
-        currentIndex: _currentIndex,
-        fixedColor: Colors.teal,
-        items: [
-          BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(
-              Icons.home,
-              size: 40,
+        appBar: AppBar(
+          // TRY THIS: Try changing the color here to a specific color (to
+          // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+          // change color while the other colors stay the same.
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(_judul[_currentIndex]),
+        ),
+        // body: _screens[_currentIndex],
+        drawer: myDrawer(),
+        body: ListView(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(20),
+              child: Text(
+                "Peraturan Permainan",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-          BottomNavigationBarItem(
-            label: "Search",
-            icon: Icon(
-              Icons.search,
-              size: 40,
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                  '1. Player akan diperlihatkan 5 gambar yang harus diingat. Setiap gambar hanya ditunjukkan selama 3 detik'),
             ),
-          ),
-          BottomNavigationBarItem(
-            label: "History",
-            icon: Icon(
-              Icons.history,
-              size: 40,
-            ),
-          ),
-          // BottomNavigationBarItem(
-          //   label: "Buy",
-          //   icon: Icon(Icons.shopping_cart),
-          // ),
-        ],
-        onTap: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        });
+          ],
+        )
+        // This trailing comma makes auto-formatting nicer for build methods.
+        );
   }
 
   Drawer myDrawer() {
