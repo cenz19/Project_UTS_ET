@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:memorimage_160421072_160421017/screen/login.dart';
 import 'package:memorimage_160421072_160421017/screen/quiz.dart';
 import 'package:memorimage_160421072_160421017/screen/leaderboard.dart';
@@ -22,17 +21,18 @@ void main() {
     return user_id;
   }
 
-  // Future<int> checkScore() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   int score = prefs.getInt("score") ?? 0;
-  //   return score;
-  // }
+  Future<int> checkScore() async {
+    final prefs = await SharedPreferences.getInstance();
+    int score = prefs.getInt("score") ?? 0;
+    return score;
+  }
+
   // runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();
-  // checkScore().then((int result) {
-  //   top_point = result;
-  // });
-
+  checkScore().then((int result) {
+    top_point = result;
+  });
+  print(top_point);
   checkUser().then((String result) {
     if (result == '')
       runApp(LoginForm());

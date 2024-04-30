@@ -1,10 +1,16 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:memorimage_160421072_160421017/main.dart';
 import 'package:memorimage_160421072_160421017/class/questionBank.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+void getHighscore(int point) async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setInt("score", point);
+  main();
+}
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -128,80 +134,35 @@ class _QuizState extends State<Quiz> {
         if (_hitung > 0) {
           _hitung--;
         } else {
-          // showDialog<String>(
-          //     context: context,
-          //     builder: (BuildContext context) => AlertDialog(
-          //           title: Text('Time Up'),
-          //           content: Text('Quiz is Finished'),
-          //           actions: <Widget>[
-          //             TextButton(
-          //               onPressed: () => Navigator.pop(context, 'OK'),
-          //               child: const Text('OK'),
-          //             ),
-          //           ],
-          //         ));
-          // _timer.cancel();
           nextQuestion();
         }
       });
     });
   }
 
-  Future<int> checkTopPoint() async {
-    final prefs = await SharedPreferences.getInstance();
-    int top_point = prefs.getInt("top_point") ?? 0;
-    return top_point;
-  }
+  // Future<int> checkTopPoint() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   int top_point = prefs.getInt("top_point") ?? 0;
+  //   return top_point;
+  // }
 
-  Future<String> checkTopUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    String top_user = prefs.getString("top_user") ?? '';
-    return top_user;
-  }
+  // Future<String> checkTopUser() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   String top_user = prefs.getString("top_user") ?? '';
+  //   return top_user;
+  // }
 
-  void setTopUser(String active_user, int point) async {
-    //later, we use web service here to check the user id and password
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString("top_user", active_user);
-    prefs.setInt("top_point", point);
-  }
+  // void setTopUser(String active_user, int point) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   prefs.setString("top_user", active_user);
+  //   prefs.setInt("top_point", point);
+  // }
 
-  Future<String> checkUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    String user_id = prefs.getString("user_id") ?? '';
-    return user_id;
-  }
-
-  finishQuiz() {
-    int top_point = 0;
-    String active_user = "";
-    checkTopPoint().then((int result) {
-      top_point = result;
-    });
-    if (_point > top_point) {
-      checkUser().then((String result) {
-        setTopUser(result, _point);
-      });
-    }
-
-    _timer.cancel();
-    _question_no = 0;
-    showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-              title: Text('Quiz'),
-              content: Text('Your point = $_point'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context, 'OK');
-                    Navigator.pop(context);
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            ));
-  }
+  // Future<String> checkUser() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   String user_id = prefs.getString("user_id") ?? '';
+  //   return user_id;
+  // }
 
   @override
   void dispose() {
@@ -305,6 +266,37 @@ class _QuizState extends State<Quiz> {
             )
           ],
         ));
+  }
+
+  finishQuiz() {
+    // int top_point = 0;
+    // String active_user = "";
+    // checkTopPoint().then((int result) {
+    //   top_point = result;
+    // });
+    // if (_point > top_point) {
+    //   checkUser().then((String result) {
+    //     setTopUser(result, _point);
+    //   });
+    // }
+    _timer.cancel();
+    _question_no = 0;
+    showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title: Text('Quiz'),
+              content: Text('Your point = ' + _point.toString()),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context, 'OK');
+                    Navigator.pop(context);
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ));
+    getHighscore(_point);
   }
 }
 
