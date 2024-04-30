@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:memorimage_160421072_160421017/screen/login.dart';
 import 'package:memorimage_160421072_160421017/screen/quiz.dart';
 import 'package:memorimage_160421072_160421017/screen/leaderboard.dart';
@@ -145,10 +146,17 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0),
+              padding: EdgeInsets.only(left: 100.0, right: 100.0),
               child: Text(
-                  '1. Player akan diperlihatkan 5 gambar yang harus diingat. Setiap gambar hanya ditunjukkan selama 3 detik'),
+                'Para pemain akan diperlihatkan 5 gambar yang harus diingat. Setiap gambar akan ditampilkan selama 3 detik. Setelah semua gambar ditampilkan, kuis akan dimulai. Setiap pertanyaan dalam kuis akan menampilkan 4 pilihan gambar. Pemain harus memilih satu dari keempat gambar tersebut. Pilihan gambar harus sesuai dengan gambar yang telah ditampilkan sebelum dimulainya kuis. Pemain juga akan diberi waktu untuk menyelesaikan seluruh kuis. Skor pemain akan tercatat dalam papan peringkat.',
+                textAlign: TextAlign.center,
+              ),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, 'quiz');
+                },
+                child: Text("Mainkan Permainan"))
           ],
         )
         // This trailing comma makes auto-formatting nicer for build methods.
