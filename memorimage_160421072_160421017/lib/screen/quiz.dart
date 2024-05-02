@@ -42,7 +42,7 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   int _initialValue = 30;
   int _hitung = 30;
-  int _hitungAnimasi = 15;
+  int _hitungAnimasi = 0;
   String _imgHint = "";
   late Timer _timer;
   late Timer _timerAnimation;
@@ -50,8 +50,8 @@ class _QuizState extends State<Quiz> {
   List<String> _hints = [];
   int _question_no = 0;
   int _point = 0;
-  double _imgWidth = 200;
-  double _imgHeight = 200;
+  double _imgWidth = 180;
+  double _imgHeight = 180;
   bool visibleHint = true;
   bool visibleMain = false;
 
@@ -59,50 +59,155 @@ class _QuizState extends State<Quiz> {
   void initState() {
     super.initState();
     _questions.add(QuestionObj(
-      "images/a.png",
-      "images/b.png",
-      "images/c.png",
-      "images/d.png",
-      "images/a.png",
+      "images/c-1-1.png",
+      "images/c-1-2.png",
+      "images/c-1-3.png",
+      "images/c-1-4.png",
+      "images/c-1-1.png",
     ));
     _questions.add(QuestionObj(
-      "images/a.png",
-      "images/b.png",
-      "images/c.png",
-      "images/d.png",
-      "images/b.png",
+      "images/c-2-1.png",
+      "images/c-2-2.png",
+      "images/c-2-3.png",
+      "images/c-2-4.png",
+      "images/c-2-2.png",
     ));
     _questions.add(QuestionObj(
-      "images/a.png",
-      "images/b.png",
-      "images/c.png",
-      "images/d.png",
-      "images/c.png",
+      "images/c-3-1.png",
+      "images/c-3-2.png",
+      "images/c-3-3.png",
+      "images/c-3-4.png",
+      "images/c-3-3.png",
     ));
     _questions.add(QuestionObj(
-      "images/a.png",
-      "images/b.png",
-      "images/c.png",
-      "images/d.png",
-      "images/d.png",
+      "images/c-4-1.png",
+      "images/c-4-2.png",
+      "images/c-4-3.png",
+      "images/c-4-4.png",
+      "images/c-4-4.png",
     ));
     _questions.add(QuestionObj(
-      "images/a.png",
-      "images/b.png",
-      "images/c.png",
-      "images/d.png",
-      "images/a.png",
+      "images/c-5-1.png",
+      "images/c-5-2.png",
+      "images/c-5-3.png",
+      "images/c-5-4.png",
+      "images/c-5-1.png",
     ));
+    _questions.add(QuestionObj(
+      "images/c-6-1.png",
+      "images/c-6-2.png",
+      "images/c-6-3.png",
+      "images/c-6-4.png",
+      "images/c-6-2.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-7-1.png",
+      "images/c-7-2.png",
+      "images/c-7-3.png",
+      "images/c-7-4.png",
+      "images/c-7-3.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-8-1.png",
+      "images/c-8-2.png",
+      "images/c-8-3.png",
+      "images/c-8-4.png",
+      "images/c-8-4.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-9-1.png",
+      "images/c-9-2.png",
+      "images/c-9-3.png",
+      "images/c-9-4.png",
+      "images/c-9-1.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-10-1.png",
+      "images/c-10-2.png",
+      "images/c-10-3.png",
+      "images/c-10-4.png",
+      "images/c-10-2.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-11-1.png",
+      "images/c-11-2.png",
+      "images/c-11-3.png",
+      "images/c-11-4.png",
+      "images/c-11-3.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-12-1.png",
+      "images/c-12-2.png",
+      "images/c-12-3.png",
+      "images/c-12-4.png",
+      "images/c-12-4.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-13-1.png",
+      "images/c-13-2.png",
+      "images/c-13-3.png",
+      "images/c-13-4.png",
+      "images/c-13-1.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-14-1.png",
+      "images/c-14-2.png",
+      "images/c-14-3.png",
+      "images/c-14-4.png",
+      "images/c-14-2.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-15-1.png",
+      "images/c-15-2.png",
+      "images/c-15-3.png",
+      "images/c-15-4.png",
+      "images/c-15-3.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-16-1.png",
+      "images/c-16-2.png",
+      "images/c-16-3.png",
+      "images/c-16-4.png",
+      "images/c-16-4.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-17-1.png",
+      "images/c-17-2.png",
+      "images/c-17-3.png",
+      "images/c-17-4.png",
+      "images/c-17-1.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-18-1.png",
+      "images/c-18-2.png",
+      "images/c-18-3.png",
+      "images/c-18-4.png",
+      "images/c-18-2.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-19-1.png",
+      "images/c-19-2.png",
+      "images/c-19-3.png",
+      "images/c-19-4.png",
+      "images/c-19-3.png",
+    ));
+    _questions.add(QuestionObj(
+      "images/c-20-1.png",
+      "images/c-20-2.png",
+      "images/c-20-3.png",
+      "images/c-20-4.png",
+      "images/c-20-4.png",
+    ));
+    _hitungAnimasi = 3 * _questions.length;
     Set<int> uniqueNumbers = Set<int>();
     Random random = Random();
 
-    while (uniqueNumbers.length < 5) {
-      uniqueNumbers.add(random.nextInt(5));
+    while (uniqueNumbers.length < _questions.length) {
+      uniqueNumbers.add(random.nextInt(_questions.length));
     }
     List<int> randomNumbers = uniqueNumbers.toList();
     for (int number in randomNumbers) {
       _hints.add(_questions[number].answer);
-      print(number);
     }
     _imgHint = _hints[0];
     StartAnimation();
@@ -111,7 +216,7 @@ class _QuizState extends State<Quiz> {
   void checkAnswer(String answer) {
     setState(() {
       if (answer == _questions[_question_no].answer) {
-        _point += 100;
+        _point += 25;
       }
       nextQuestion();
     });
@@ -128,17 +233,7 @@ class _QuizState extends State<Quiz> {
       setState(() {
         if (_hitungAnimasi > 1) {
           _hitungAnimasi--;
-          if (_hitungAnimasi > 12) {
-            _imgHint = _hints[0];
-          } else if (_hitungAnimasi > 9) {
-            _imgHint = _hints[1];
-          } else if (_hitungAnimasi > 6) {
-            _imgHint = _hints[2];
-          } else if (_hitungAnimasi > 3) {
-            _imgHint = _hints[3];
-          } else if (_hitungAnimasi > 0) {
-            _imgHint = _hints[4];
-          }
+          _imgHint = _hints[(_hitungAnimasi/3).ceil()];
         } else {
           visibleHint = false;
           visibleMain = true;
@@ -192,6 +287,7 @@ class _QuizState extends State<Quiz> {
               child: Center(
                 child: Column(
                   children: <Widget>[
+                    Text("Point : " + _point.toString()),
                     CircularPercentIndicator(
                       radius: 100.0,
                       lineWidth: 20.0,
@@ -212,7 +308,7 @@ class _QuizState extends State<Quiz> {
                               checkAnswer(_questions[_question_no].img_a);
                             },
                             icon: Image.asset(
-                              "images/earth.png",
+                              _questions[_question_no].img_a,
                               width: _imgWidth,
                               height: _imgHeight,
                             ),
@@ -222,7 +318,7 @@ class _QuizState extends State<Quiz> {
                               checkAnswer(_questions[_question_no].img_b);
                             },
                             icon: Image.asset(
-                              "images/earth.png",
+                              _questions[_question_no].img_b,
                               width: _imgWidth,
                               height: _imgHeight,
                             ),
@@ -239,7 +335,7 @@ class _QuizState extends State<Quiz> {
                               checkAnswer(_questions[_question_no].img_c);
                             },
                             icon: Image.asset(
-                              "images/earth.png",
+                              _questions[_question_no].img_c,
                               width: _imgWidth,
                               height: _imgHeight,
                             ),
@@ -249,7 +345,7 @@ class _QuizState extends State<Quiz> {
                               checkAnswer(_questions[_question_no].img_d);
                             },
                             icon: Image.asset(
-                              "images/earth.png",
+                              _questions[_question_no].img_d,
                               width: _imgWidth,
                               height: _imgHeight,
                             ),
