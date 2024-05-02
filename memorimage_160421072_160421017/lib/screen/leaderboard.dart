@@ -25,31 +25,24 @@ class LeaderBoard extends StatefulWidget {
 }
 
 class _LeaderBoardState extends State<LeaderBoard> {
-  List<String> gelars = [
-    "Sfortunato Indovinatore",
-    "Neofita dell'Indovinello",
-    "Principiante dell'Indovinello",
-    "Abile Indovinatore",
-    "Esperto dell'Indovinello",
-    "Maestro dell'Indovinello"
+  List<List<String>> topScores = [
+    ['none', '0'],
+    ['none', '0'],
+    ['none', '0']
   ];
+  @override
+  void initState() {
+    super.initState();
+    loadTopScores();
+  }
 
-  String gelar() {
-    String gelar = "";
-    if (top_point == 0) {
-      gelar = gelars[0];
-    } else if (top_point == 100) {
-      gelar = gelars[1];
-    } else if (top_point == 200) {
-      gelar = gelars[2];
-    } else if (top_point == 300) {
-      gelar = gelars[3];
-    } else if (top_point == 400) {
-      gelar = gelars[4];
-    } else {
-      gelar = gelars[5];
-    }
-    return gelar;
+  void loadTopScores() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      topScores[0] = prefs.getStringList('top1') ?? ['none', '0'];
+      topScores[1] = prefs.getStringList('top2') ?? ['none', '0'];
+      topScores[2] = prefs.getStringList('top3') ?? ['none', '0'];
+    });
   }
 
   @override
@@ -59,8 +52,19 @@ class _LeaderBoardState extends State<LeaderBoard> {
           title: Text('Leaderboard'),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
-        body: Center(
-          child: Text("Selamat anda mendapat gelar " + gelar()),
+        body: ListView(
+          children: <Widget>[
+            Text(
+              "Leaderboard",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              textAlign: TextAlign.center,
+            ),
+            for (int i = 0; i < 3; i++)
+              ListTile(
+                title: Text(topScores[i][0]),
+                subtitle: Text(topScores[i][1]),
+              )
+          ],
         ));
   }
 }

@@ -7,6 +7,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 String active_user = "";
 int top_point = 0;
+List<List<String>> user_top_point = [
+  ['none', '0'],
+  ['none', '0'],
+  ['none', '0']
+];
 
 void doLogout() async {
   final prefs = await SharedPreferences.getInstance();
@@ -28,12 +33,17 @@ void main() {
     return score;
   }
 
+  Future<String> checkTopScore() async {
+    final prefs = await SharedPreferences.getInstance();
+    String top_score = prefs.getString("top_score") ?? '';
+    return top_score;
+  }
+
   // runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();
   checkScore().then((int result) {
     top_point = result;
   });
-  print(top_point);
   checkUser().then((String result) {
     if (result == '')
       runApp(LoginForm());

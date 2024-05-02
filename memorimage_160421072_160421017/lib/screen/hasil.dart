@@ -58,7 +58,8 @@ class _LeaderBoardState extends State<Hasil> {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
         body: Center(
-          child: Text("Selamat anda mendapat gelar " + gelar()),
+          child: Text(
+              "Selamat " + active_user + ", anda mendapat gelar " + gelar()),
         ));
   }
 }

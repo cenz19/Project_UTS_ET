@@ -5,10 +5,32 @@ import 'package:memorimage_160421072_160421017/class/questionBank.dart';
 import 'package:memorimage_160421072_160421017/screen/hasil.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:memorimage_160421072_160421017/main.dart';
 
-void getHighscore(int point) async {
+void getScore(int point) async {
   final prefs = await SharedPreferences.getInstance();
   prefs.setInt("score", point);
+}
+
+void top3(int point) async {
+  final prefs = await SharedPreferences.getInstance();
+  List<List<String>> topScores = [
+    prefs.getStringList('top1') ?? ['none', '0'],
+    prefs.getStringList('top2') ?? ['none', '0'],
+    prefs.getStringList('top3') ?? ['none', '0']
+  ];
+
+  for (int i = 0; i < topScores.length; i++) {
+    int currentScore = int.parse(topScores[i][1]);
+    if (point > currentScore) {
+      topScores.insert(i, [active_user, point.toString()]);
+      topScores.removeLast(); // Remove the lowest score
+      break;
+    }
+  }
+  await prefs.setStringList('top1', topScores[0]);
+  await prefs.setStringList('top2', topScores[1]);
+  await prefs.setStringList('top3', topScores[2]);
 }
 
 class Quiz extends StatefulWidget {
@@ -244,16 +266,6 @@ class _QuizState extends State<Quiz> {
   }
 
   finishQuiz() {
-    // int top_point = 0;
-    // String active_user = "";
-    // checkTopPoint().then((int result) {
-    //   top_point = result;
-    // });
-    // if (_point > top_point) {
-    //   checkUser().then((String result) {
-    //     setTopUser(result, _point);
-    //   });
-    // }
     _timer.cancel();
     _question_no = 0;
     showDialog<String>(
@@ -265,14 +277,14 @@ class _QuizState extends State<Quiz> {
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context, 'OK');
-                    // Navigator.pop(context);
                     Navigator.popAndPushNamed(context, 'hasil');
                   },
                   child: const Text('OK'),
                 ),
               ],
             ));
-    getHighscore(_point);
+    top3(_point);
+    getScore(_point);
   }
 }
 
