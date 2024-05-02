@@ -36,13 +36,13 @@ class _LeaderBoardState extends State<Hasil> {
     String gelar = "";
     if (top_point == 0) {
       gelar = gelars[0];
-    } else if (top_point == 100) {
+    } else if (top_point <= 100) {
       gelar = gelars[1];
-    } else if (top_point == 200) {
+    } else if (top_point <= 200) {
       gelar = gelars[2];
-    } else if (top_point == 300) {
+    } else if (top_point <= 300) {
       gelar = gelars[3];
-    } else if (top_point == 400) {
+    } else if (top_point <= 400) {
       gelar = gelars[4];
     } else {
       gelar = gelars[5];
