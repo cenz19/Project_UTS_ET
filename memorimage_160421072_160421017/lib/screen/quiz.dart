@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:memorimage_160421072_160421017/class/questionBank.dart';
@@ -233,7 +234,7 @@ class _QuizState extends State<Quiz> {
       setState(() {
         if (_hitungAnimasi > 1) {
           _hitungAnimasi--;
-          _imgHint = _hints[(_hitungAnimasi/3).ceil()];
+          _imgHint = _hints[(_hitungAnimasi / 3).ceil()];
         } else {
           visibleHint = false;
           visibleMain = true;
@@ -274,12 +275,21 @@ class _QuizState extends State<Quiz> {
           children: [
             Visibility(
               visible: visibleHint,
-              child: Center(
-                child: Image.asset(
-                  _imgHint,
-                  width: 200, // Set width if needed
-                  height: 200, // Set height if needed
-                ),
+              child: TweenAnimationBuilder(
+                duration: const Duration(seconds: 20),
+                tween: Tween<double>(begin: 0, end: 3 * math.pi),
+                builder: (_, double angle, __) {
+                  return Transform.rotate(
+                    angle: angle,
+                    child: Center(
+                      child: Image.asset(
+                        _imgHint,
+                        width: 200, 
+                        height: 200, 
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             Visibility(
