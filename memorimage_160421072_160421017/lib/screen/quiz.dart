@@ -276,8 +276,8 @@ class _QuizState extends State<Quiz> {
             Visibility(
               visible: visibleHint,
               child: TweenAnimationBuilder(
-                duration: const Duration(seconds: 20),
-                tween: Tween<double>(begin: 0, end: 3 * math.pi),
+                duration: const Duration(seconds: 60),
+                tween: Tween<double>(begin: 0, end: 5 * math.pi),
                 builder: (_, double angle, __) {
                   return Transform.rotate(
                     angle: angle,
